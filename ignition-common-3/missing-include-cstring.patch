@@ -1,0 +1,22 @@
+From 465bb7780e552b278de559fafaffe3d061a99782 Mon Sep 17 00:00:00 2001
+From: Kunal Tyagi <tyagi.kunal@live.com>
+Date: Wed, 28 Jul 2021 03:09:28 +0900
+Subject: [PATCH] Add cstring for `std::memcpy` (#230)
+
+Signed-off-by: Kunal Tyagi <tyagi.kunal@live.com>
+---
+ graphics/src/Image.cc | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/graphics/src/Image.cc b/graphics/src/Image.cc
+index 37737d74..b9285599 100644
+--- a/graphics/src/Image.cc
++++ b/graphics/src/Image.cc
+@@ -19,6 +19,7 @@
+ #endif
+ #include <FreeImage.h>
+ 
++#include <cstring>
+ #include <string>
+ 
+ #include <ignition/common/Console.hh>

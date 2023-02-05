@@ -1,7 +1,0 @@
-/pkg/
-/src/
-**.src.tar
-**.src.tar.gz
-**.pkg.tar
-**.pkg.tar.zst
-**.AppImage
