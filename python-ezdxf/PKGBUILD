@@ -1,0 +1,51 @@
+# Maintainer: Grey Christoforo <first name [at] last name [dot] net>
+
+pkgname=python-ezdxf
+pkgver=1.0.2b0
+pkgrel=1
+pkgdesc="Python interface to DXF"
+arch=('x86_64')
+url=https://ezdxf.mozman.at/
+license=('MIT')
+depends=(
+python
+python-typing_extensions
+python-pyparsing
+)
+makedepends=(
+python-setuptools
+cython
+)
+checkdepends=(
+python-nurbs
+python-pytest
+)
+source=("${pkgname}-${pkgver}.tar.gz"::https://github.com/mozman/ezdxf/archive/v${pkgver}.tar.gz)
+sha256sums=('a04caf58349d9c20d7f91f9b84ae038dbe902630f7b8845c79beb6b7d855a33c')
+
+prepare() {
+  cd ezdxf-${pkgver}
+}
+
+build() {
+  cd ezdxf-${pkgver}
+  python setup.py build
+}
+
+# check() {
+#   cd ezdxf-${pkgver}
+#   cd src
+#   python -m pytest ../tests ../integration_tests
+# }
+
+package() {
+  cd ezdxf-${pkgver}
+  python setup.py install --root="${pkgdir}/" --optimize=1 --skip-build
+
+  # install examples
+  mkdir -p "${pkgdir}/usr/share/${pkgname}"
+  cp -a examples "${pkgdir}/usr/share/${pkgname}"
+  cp -a examples_dxf "${pkgdir}/usr/share/${pkgname}"
+}
+
+# vim:ts=2:sw=2:et:
