@@ -8,8 +8,8 @@ arch=('any')
 url="https://gazebosim.org/libs/common"
 license=('Apache')
 groups=('development')
-depends=('ignition-math>=6' 'tinyxml2' 'freeimage' 'libutil-linux' 'gts' 'ffmpeg')
-makedepends=('ignition-cmake>=2' 'util-linux')
+depends=('ignition-math-6' 'tinyxml2' 'freeimage' 'libutil-linux' 'gts' 'ffmpeg')
+makedepends=('ignition-cmake-2' 'util-linux')
 optdepends=()
 provides=("ignition-common=3")
 _url=https://github.com/gazebosim/gz-common
