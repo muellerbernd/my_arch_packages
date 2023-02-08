@@ -10,7 +10,7 @@ license=('Apache')
 groups=('development')
 depends=('curl' 'jsoncpp' 'libyaml' 'libzip' 'ignition-common-3'
          'ignition-msgs-5' 'ignition-tools')
-makedepends=('ignition-cmake>=2')
+makedepends=('ignition-cmake-2')
 optdepends=('ruby')
 conflicts=()
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/gazebosim/gz-fuel-tools/archive/ignition-fuel-tools4_${pkgver}.tar.gz")
