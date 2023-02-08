@@ -10,7 +10,7 @@ license=('Apache')
 groups=('development')
 depends=('protobuf' 'protobuf-c' 'zeromq' 'ignition-msgs-5' 'ignition-tools'
          'libutil-linux')
-makedepends=('ignition-cmake>=2' 'util-linux')
+makedepends=('ignition-cmake-2' 'util-linux')
 optdepends=()
 conflicts=()
 source=("https://github.com/gazebosim/gz-transport/archive/ignition-transport8_${pkgver}.tar.gz")
