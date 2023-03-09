@@ -63,8 +63,8 @@ cd ${srcdir}/build
 
 check() {
   cd "${srcdir}/build"
-  cd "${srcdir}/${pkgname}-${pkgver}/build"
-  # ctest
+  # cd "${srcdir}/${pkgname}-${pkgver}/build"
+  ctest
 }
 
 package() {
