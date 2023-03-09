@@ -1,0 +1,77 @@
+# Maintainer: Wil Thomason <wbthomason@cs.cornell.edu>
+# Former maintainer: Sven Schneider <archlinux.sandmann@googlemail.com>
+
+pkgname=ompl
+pkgver=1.6.0
+pkgrel=1
+pkgdesc="The Open Motion Planning Library (OMPL) consists of many state-of-the-art sampling-based motion planning algorithms"
+arch=('i686' 'x86_64')
+url="http://ompl.kavrakilab.org/"
+license=('BSD')
+conflicts=('ompl-git')
+replaces=('ompl-git')
+depends=('boost-libs')
+makedepends=('boost' 'cmake' 'ninja' 'pkgconf' 'eigen')
+optdepends=('python: Python bindings'
+            'py++: Python bindings'
+            'ode: Plan using the Open Dynamics Engine'
+            'pypy: Speed up generating Python bindings'
+            'spot: Used for constructing finite automata from LTL formulae'
+            'morse-simulator-git: MORSE simulation engine OMPL plugin'
+            'triangle: Used to create triangular decompositions of polygonal 2D environments'
+            'flann: Additional nearest-neighbor query backend'
+            'python-numpy: Python bindings'
+            'r: Running Planner Arena locally'
+            'castxml: Python bindings'
+            'pygccxml: Python bindings')
+# source=(https://github.com/ompl/ompl/archive/${pkgver}.tar.gz)
+# sha512sums=('d1024d7cc8e309a1df94a950be67eefae1e66abaccd6b6b8980939559aee3d73c05c838ab24c818b6b57ce6c4b3181fde7595d3d1dd36d6cd0c6d125338084ac')
+
+_dir="$pkgname/"
+source=("$pkgname::git+https://github.com/ompl/ompl")
+sha256sums=('SKIP')
+
+
+build() {
+  # NOTE: To get Python bindings, you currently need to install pyplusplus through pip3. The AUR
+  # py++ package will *not* work. Hopefully that will get fixed soon...
+  # cd "${srcdir}/${pkgname}-${pkgver}"
+  # mkdir -p build
+  # cd build
+
+# Create build directory
+[ -d ${srcdir}/build ] || mkdir ${srcdir}/build
+cd ${srcdir}/build
+
+    # Build project
+    cmake ${srcdir}/${_dir} \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCATKIN_BUILD_BINARY_PACKAGE=ON \
+      -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_INSTALL_LIBDIR=lib
+    make
+
+
+  # NOTE: -march=native causes test failures by slowing down PRM and PRMstar on AMD processors for
+  # unknown reasons. Uncomment the following to remove it if you encounter this issue.
+  # CXXFLAGS=$(echo $CXXFLAGS | sed 's/-march=native//g')
+  # cmake -G Ninja \
+  #     -DCMAKE_INSTALL_PREFIX=/usr \
+  #     -DCMAKE_INSTALL_LIBDIR=lib
+  # cmake --build .
+}
+
+check() {
+  cd "${srcdir}/build"
+  cd "${srcdir}/${pkgname}-${pkgver}/build"
+  # ctest
+}
+
+package() {
+  # cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/build"
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  # cd build
+  # DESTDIR=${pkgdir} ninja install
+  make DESTDIR="${pkgdir}/" install
+}
