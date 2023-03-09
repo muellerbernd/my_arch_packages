@@ -69,9 +69,9 @@ check() {
 
 package() {
   # cd "${srcdir}/${pkgname}-${pkgver}"
-  cd "${srcdir}/build"
-  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  # install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   # cd build
   # DESTDIR=${pkgdir} ninja install
+  cd "${srcdir}/build"
   make DESTDIR="${pkgdir}/" install
 }
