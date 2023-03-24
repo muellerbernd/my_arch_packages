@@ -1,0 +1,12 @@
+diff --color -Naur cyclonedds-0.8.1_old/src/core/ddsi/src/shm_init.c cyclonedds-0.8.1/src/core/ddsi/src/shm_init.c
+--- A/src/core/ddsi/src/shm_init.c  2021-10-15 07:27:07.000000000 +0200
++++ B/src/core/ddsi/src/shm_init.c  2022-12-21 17:29:00.267522217 +0100
+@@ -21,7 +21,7 @@
+         case DDSI_SHM_WARN : return Iceoryx_LogLevel_Warn;
+         case DDSI_SHM_INFO : return Iceoryx_LogLevel_Info;
+         case DDSI_SHM_DEBUG : return Iceoryx_LogLevel_Debug;
+-        case DDSI_SHM_VERBOSE : return Iceoryx_LogLevel_Verbose;
++        case DDSI_SHM_VERBOSE : return Iceoryx_LogLevel_Trace;
+     }
+     return Iceoryx_LogLevel_Off;
+ }

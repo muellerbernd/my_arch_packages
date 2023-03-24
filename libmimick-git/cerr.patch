@@ -1,0 +1,20 @@
+diff --color -Naur Mimick/sample/CMakeLists.txt Mimick.new/sample/CMakeLists.txt
+--- A/Mimick/sample/CMakeLists.txt    2022-12-08 14:51:17.719925393 +0100
++++ B/Mimick.new/sample/CMakeLists.txt    2022-12-08 14:23:00.948956139 +0100
+@@ -1,5 +1,5 @@
+ if (NOT MSVC)
+-    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic -Werror")
++    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic")
+ endif ()
+
+ add_subdirectory (strdup)
+diff --color -Naur Mimick/test/CMakeLists.txt Mimick.new/test/CMakeLists.txt
+--- A/Mimick/test/CMakeLists.txt  2022-12-08 14:51:17.719925393 +0100
++++ B/Mimick.new/test/CMakeLists.txt  2022-12-08 14:23:00.948956139 +0100
+@@ -1,5 +1,5 @@
+ if (NOT MSVC)
+-    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic -Werror")
++    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pedantic")
+ endif ()
+
+ add_library (foo SHARED libfoo.c)

@@ -1,0 +1,35 @@
+pkgname=fastrtps
+_pkgnm=Fast-RTPS
+pkgver=1.8.0
+pkgrel=1
+pkgdesc="eprosima Fast RTPS is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol"
+arch=('any')
+url="https://www.eprosima.com"
+license=('Apache2.0')
+depends=()
+conflicts=(fastrtps)
+makedepends=(cmake jdk8-openjdk gradle foonathan_memory asio)
+source=("$pkgname::git+https://github.com/eProsima/Fast-DDS.git" "find_foonathan_memory.patch")
+sha256sums=('SKIP'
+            '38f1c9b41d55adc35d969f9b2d69c8391b3c589d0e6864d8e5e0f41b71b67c5b')
+
+# prepare() {
+#     cd ${srcdir}/${_dir}
+#     patch -Np1 -i ${srcdir}/find_foonathan_memory.patch
+# }
+
+_dir="$pkgname"
+build() {
+    [ -d ${srcdir}/build ] || mkdir ${srcdir}/build
+    cd ${srcdir}/build
+
+    cmake ${srcdir}/${_dir} \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr
+    make
+}
+
+package() {
+    cd ${srcdir}/build
+    make DESTDIR="${pkgdir}/" install
+}

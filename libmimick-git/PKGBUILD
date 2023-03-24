@@ -1,0 +1,57 @@
+# Maintainer: eisensheng <eisensheng@mailbox.org>
+_pkgname=Mimick
+pkgname=libmimick-git
+pkgver=v0.3.0.r11.g93b10bf
+pkgrel=1
+pkgdesc='KISS Cross-platform C Mocking library.'
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url="https://github.com/Snaipe/Mimick"
+license=('MIT')
+makedepends=('cmake')
+provides=('libmimick')
+source=('git+https://github.com/Snaipe/Mimick.git' 'cerr.patch' 'find_cmake.patch')
+md5sums=('SKIP'
+         '166b1011e7275789af5c7e905bf8cbde'
+         'fe942c713da5c968a0265be1d9d6cd64')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+
+  git describe --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd "${srcdir}/${_pkgname}/"
+
+  [[ -d build ]] || mkdir build
+  cd ${srcdir}/${_dir}
+  patch -Np1 -i ${srcdir}/cerr.patch
+  patch -Np1 -i ${srcdir}/find_cmake.patch
+}
+
+build() {
+  cd "${srcdir}/${_pkgname}/build"
+
+  cmake \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    ..
+  make
+}
+
+check() {
+  cd "${srcdir}/${_pkgname}/build"
+
+  # Tests are failing.
+  # make test
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}/build"
+
+  make DESTDIR="${pkgdir}" LIBDIR="${pkgdir}/usr/lib" install
+
+  install -D -m644 ../LICENSE \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

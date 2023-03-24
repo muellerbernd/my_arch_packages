@@ -1,0 +1,32 @@
+--- A/Mimick/CMakeLists.txt   2022-12-08 14:23:00.945622859 +0100
++++ B/Mimick/CMakeLists.txt   2022-12-08 15:25:42.379363122 +0100
+@@ -2,7 +2,7 @@
+ # Redistribution and use of this file is allowed according to the terms of the MIT license.
+ # For details see the LICENSE file distributed with Mimick.
+
+-cmake_minimum_required (VERSION 2.8)
++cmake_minimum_required (VERSION 3.10)
+
+ project (Mimick C)
+
+@@ -167,10 +167,20 @@
+ endforeach ()
+
+ install(TARGETS mimick
++  EXPORT mimickConfig
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
++export(TARGETS mimick
++    FILE "${CMAKE_CURRENT_BINARY_DIR}/mimickConfig.cmake"
++    )
++
++install(
++    EXPORT mimickConfig
++    DESTINATION "${CMAKE_INSTALL_DATADIR}/mimick/cmake"
++    )
++
+ add_custom_target(mimick_tests ALL)
+
+ function (add_mimick_sample _NAME)

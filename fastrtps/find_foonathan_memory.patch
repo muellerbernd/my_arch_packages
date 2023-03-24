@@ -1,0 +1,12 @@
+diff --color -Naur fastrtps_old/CMakeLists.txt fastrtps/CMakeLists.txt
+--- A/CMakeLists.txt    2022-12-21 15:38:17.389347583 +0100
++++ B/CMakeLists.txt    2022-12-21 15:38:58.298882291 +0100
+@@ -236,7 +236,7 @@
+ eprosima_find_thirdparty(Asio asio VERSION 1.10.8)
+ eprosima_find_thirdparty(TinyXML2 tinyxml2)
+
+-find_package(foonathan_memory REQUIRED)
++find_package(foonathan_memory_vendor REQUIRED)
+ message(STATUS "Found foonathan_memory: ${foonathan_memory_DIR}")
+ find_package(ThirdpartyBoost REQUIRED)
+
