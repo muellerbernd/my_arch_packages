@@ -1,0 +1,19 @@
+pkgbase = fastrtps
+	pkgdesc = eprosima Fast RTPS is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol
+	pkgver = 1.8.0
+	pkgrel = 1
+	url = https://www.eprosima.com
+	arch = any
+	license = Apache2.0
+	makedepends = cmake
+	makedepends = jdk8-openjdk
+	makedepends = gradle
+	makedepends = foonathan_memory
+	makedepends = asio
+	conflicts = fastrtps
+	source = fastrtps::git+https://github.com/eProsima/Fast-DDS.git
+	source = find_foonathan_memory.patch
+	sha256sums = SKIP
+	sha256sums = 38f1c9b41d55adc35d969f9b2d69c8391b3c589d0e6864d8e5e0f41b71b67c5b
+
+pkgname = fastrtps
