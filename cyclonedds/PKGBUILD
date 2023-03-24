@@ -1,7 +1,8 @@
 # Maintainer: Tong Chunli <tty2099@gmail.com>
+# Maintainer: Bernd Müller <github@muellerbernd.de>
 
 pkgname=cyclonedds
-pkgver=0.8.1
+pkgver=0.10.3
 pkgrel=1
 pkgdesc='Eclipse Cyclone DDS is a very performant and robust open-source DDS implementation.'
 arch=('x86_64')
@@ -13,13 +14,13 @@ source=(
     "$pkgname-$pkgver.tar.gz::https://github.com/eclipse-cyclonedds/cyclonedds/archive/refs/tags/${pkgver}.tar.gz"
     "fix_Iceoryx_LogLevel.patch"
 )
-sha256sums=('ec830057682b7706492a3e9a6907c2ad6fefbd78b1794fcad21743901ff193ef'
+sha256sums=('bc79696209febfe66d97e7af6b11e92f9db663caf608a922b6c201b1d6a5eb62'
             'c4f974222a9280fbad08f21e6b70453fca2f419d35bec066d9f78ace4a857a0b')
 
 _dir="$pkgname-$pkgver"
 prepare() {
     cd ${srcdir}/${_dir}
-    patch -Np1 -i ${srcdir}/fix_Iceoryx_LogLevel.patch
+    # patch -Np1 -i ${srcdir}/fix_Iceoryx_LogLevel.patch
 }
 
 build() {
