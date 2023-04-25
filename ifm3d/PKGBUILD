@@ -25,10 +25,16 @@ build() {
     -DBUILD_IN_DEPS=OFF \
     -DBUILD_EXAMPLES=ON
   make
+
+  # cd ${srcdir}/${_dir}
+  # python setup.py build
 }
 
 package() {
   cd "${srcdir}/build"
   make DESTDIR="${pkgdir}/" install
+
+  # cd ${srcdir}/${_dir}
+  # python setup.py install --root="$pkgdir" --optimize=1
 }
 # vim: set ts=2 sw=2:
