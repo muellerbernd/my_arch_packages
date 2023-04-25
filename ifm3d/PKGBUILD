@@ -2,8 +2,8 @@ pkgdesc="Library and utilities for working with ifm pmd-based 3D ToF Perception 
 url='https://github.com/ifm/ifm3d'
 
 pkgname='ifm3d'
-pkgver='v1.2.6'
 _pkgver='1.2.6'
+pkgver=v${_pkgver}
 arch=('any')
 pkgrel=1
 license=('Apache License 2.0')
@@ -22,7 +22,7 @@ build() {
   cmake ${srcdir}/${_dir} \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DBUILD_IN_DEPS=OFF\
+    -DBUILD_IN_DEPS=OFF \
     -DBUILD_EXAMPLES=ON
   make
 }
