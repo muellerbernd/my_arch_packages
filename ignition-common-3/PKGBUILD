@@ -14,7 +14,7 @@ makedepends=('ignition-cmake=2' 'util-linux')
 provides=("ignition-common=3")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/gazebosim/gz-common/archive/ignition-common3_${pkgver}.tar.gz"
         "missing-include-cstring.patch::https://github.com/gazebosim/gz-common/commit/465bb7780e552b278de559fafaffe3d061a99782.patch"
-        "./missing-include-stdint.patch"
+        "./missing-include-cstdint.patch"
         "./ffmpeg6.patch")
 sha256sums=('fc1bf79eb53e3b56b4b8e0eb6965ec68982da18ea42154dd4fd891ac739d65fb'
             '9a6f2d45a1c2146150336e25162f6ba46f19db1deb46b2b644a8faa3afe3d7af'
