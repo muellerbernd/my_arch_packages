@@ -1,0 +1,11 @@
+diff --color -Naur gz-common-ignition-common3_3.15.1_old/profiler/src/RemoteryProfilerImpl.hh gz-common-ignition-common3_3.15.1/profiler/src/RemoteryProfilerImpl.hh
+--- a/profiler/src/RemoteryProfilerImpl.hh  2022-10-11 23:26:53.000000000 +0200
++++ b/profiler/src/RemoteryProfilerImpl.hh  2023-05-15 11:14:17.893094373 +0200
+@@ -22,6 +22,7 @@
+
+ #include "RemoteryConfig.h"
+ #include "Remotery.h"
++#include <stdint.h>
+
+ #include "ProfilerImpl.hh"
+
