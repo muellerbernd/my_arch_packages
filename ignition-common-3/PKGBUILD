@@ -27,7 +27,7 @@ prepare() {
   cd "$srcdir/$_dir"
   patch -p1 < ../missing-include-cstring.patch
   patch -Np1 -i ${srcdir}/ffmpeg6.patch
-  patch -Np1 -i ${srcdir}/missing-include-stdint.patch
+  patch -Np1 -i ${srcdir}/missing-include-cstdint.patch
 }
 
 build() {
