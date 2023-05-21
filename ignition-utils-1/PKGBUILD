@@ -2,7 +2,7 @@
 
 pkgname=ignition-utils-1
 pkgname_=ignition-utils
-pkgver=1.4.0
+pkgver=1.5.0
 pkgrel=1
 pkgdesc="Classes and functions for robot applications"
 arch=('any')
@@ -11,7 +11,7 @@ license=('Apache')
 depends=('cmake' 'ignition-cmake-2')
 provides=('ignition-utils=1')
 source=("${pkgname_}-${pkgver}.tar.gz::https://github.com/gazebosim/gz-utils/archive/ignition-utils1_${pkgver}.tar.gz")
-sha256sums=('74ba40f8a35f9ae07102402d4acde11e4f9a1d52663a339388fe086527093f86')
+sha256sums=('7548368c8d405ce796af524d309e491aafff4c770456e821086489cbd6d75927')
 
 _dir="gz-utils-ignition-utils1_${pkgver}"
 

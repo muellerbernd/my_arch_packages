@@ -3,7 +3,7 @@
 
 pkgname=ignition-cmake-2
 pkgname_=ignition-cmake
-pkgver=2.15.0
+pkgver=2.16.0
 pkgrel=1
 pkgdesc="Provides modules that are used to find dependencies of ignition projects and generate cmake targets for consumers of ignition projects to link against."
 arch=('any')
@@ -14,7 +14,7 @@ provides=('ignition-cmake=2')
 optdepends=()
 conflicts=()
 source=("https://github.com/gazebosim/gz-cmake/archive/${pkgname_}2_${pkgver}.tar.gz")
-sha256sums=('e89e72bbf9d3ba27442db76478f68a1e56cf280b33c79cdcf23d7a13ea35980d')
+sha256sums=('fcbe3de79b711fff8f8a94f24652e5d0e5d3cac8a79dd8f96e03c4b1886db3cc')
 
 _dir="gz-cmake-${pkgname_}2_${pkgver}"
 

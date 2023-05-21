@@ -3,7 +3,7 @@
 
 pkgname=ignition-common-3
 pkgver=3.15.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Provides a set of libraries that cover many different use cases."
 arch=('x86_64')
 url="https://gazebosim.org/libs/common"
