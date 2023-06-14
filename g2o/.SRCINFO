@@ -1,7 +1,7 @@
 pkgbase = g2o
 	pkgdesc = A General Framework for Graph Optimization
-	pkgver = 20201223_git
-	pkgrel = 2
+	pkgver = 20230223_git
+	pkgrel = 1
 	url = https://github.com/RainerKuemmerle/g2o
 	arch = i686
 	arch = x86_64
@@ -17,8 +17,7 @@ pkgbase = g2o
 	provides = g2o
 	conflicts = g2o-svn
 	conflicts = g2o-git
-	source = g2o.tar.gz::https://github.com/RainerKuemmerle/g2o/archive/20201223_git.tar.gz
-	sha256sums = 20af80edf8fd237e29bd21859b8fc734e615680e8838824e8b3f120c5f4c1672
+	source = g2o.tar.gz::https://github.com/RainerKuemmerle/g2o/archive/20230223_git.tar.gz
+	sha256sums = c8cf002f636ce2e83fc96f5e8257be4020cf1ae9f6a9d71838ec024f4d8a16cf
 
 pkgname = g2o
-

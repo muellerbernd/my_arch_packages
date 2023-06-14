@@ -1,7 +1,7 @@
 pkgbase = ignition-common-3
 	pkgdesc = Provides a set of libraries that cover many different use cases.
 	pkgver = 3.15.1
-	pkgrel = 2
+	pkgrel = 3
 	url = https://gazebosim.org/libs/common
 	arch = x86_64
 	groups = development
