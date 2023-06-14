@@ -9,7 +9,7 @@ pkgdesc="Provides modules that are used to find dependencies of ignition project
 arch=('any')
 url="https://gazebosim.org/libs/cmake"
 license=('Apache')
-depends=('cmake' 'pkg-config' 'ruby-ronn' 'doxygen')
+depends=('cmake' 'pkg-config' 'ruby-ronn' 'doxygen' 'cppzmq')
 provides=('ignition-cmake=2')
 optdepends=()
 conflicts=()
