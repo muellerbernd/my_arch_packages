@@ -1,5 +1,5 @@
 pkgbase = ignition-transport-8
-	pkgdesc = The transport library combines ZeroMQ with Protobufs to create a fast and efficient message passing system. Asynchronous message publication and subscription is provided along with service calls and discovery.
+	pkgdesc = Transport library for component communication based on publication/subscription and service calls.
 	pkgver = 8.4.0
 	pkgrel = 2
 	url = https://gazebosim.org/libs/transport
