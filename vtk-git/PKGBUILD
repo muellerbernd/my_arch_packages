@@ -7,6 +7,8 @@
 
 pkgname=vtk-git
 pkgver=git
+conflicts=('vtk')
+provides=('vtk')
 pkgrel=1
 pkgdesc="Software system for 3D computer graphics, image processing, and visualization"
 arch=(x86_64)
@@ -157,8 +159,7 @@ build() {
     -DCMAKE_SKIP_INSTALL_RPATH=ON \
     -DCMAKE_JAVA_COMPILE_FLAGS="-Xlint:-options" \
     -DBUILD_SHARED_LIBS=ON \
-    -DVTK_BUILD_ALL_MODULES=ON \
-    -DVTK_INSTALL_TCL_DIR=/usr/lib/tcl${_tkver}/vtk/ \
+    -DVTK_BUILD_ALL_MODULES=OFF \
     -DVTK_LEGACY_REMOVE=ON \
     -DVTK_SMP_ENABLE_OPENMP=ON \
     -DVTK_SMP_IMPLEMENTATION_TYPE=TBB \
@@ -183,25 +184,26 @@ build() {
     -Wno-dev
 #    -DFIDES_USE_EXTERNAL_RAPIDJSON=ON \
   make -C build
+    # -DVTK_INSTALL_TCL_DIR=/usr/lib/tcl${_tkver}/vtk/ \
 }
 
 package() {
   make -C build DESTDIR="${pkgdir}" install
 
   # Move the vtk.jar to the arch-specific location…
-  install -dv "${pkgdir}"/usr/share/java/vtk
-  mv -v "${pkgdir}"/usr/lib/java/vtk.jar "${pkgdir}"/usr/share/java/vtk
-  # …and the libs to the proper place
-  mv "${pkgdir}"/usr/lib/java/vtk-Linux-${CARCH}/*.so "${pkgdir}"/usr/lib/
-  rmdir "${pkgdir}"/usr/lib/java/{vtk-Linux-${CARCH}/,}
+  # install -dv "${pkgdir}"/usr/share/java/vtk
+  # mv -v "${pkgdir}"/usr/lib/java/vtk.jar "${pkgdir}"/usr/share/java/vtk
+  # # …and the libs to the proper place
+  # mv "${pkgdir}"/usr/lib/java/vtk-Linux-${CARCH}/*.so "${pkgdir}"/usr/lib/
+  # rmdir "${pkgdir}"/usr/lib/java/{vtk-Linux-${CARCH}/,}
 
   # byte-compile python modules since the CMake build does not do it
-  local site_packages=$(python -c "import site; print(site.getsitepackages()[0])")
-  python -m compileall -o 0 -o 1 -o 2 --hardlink-dupes -s "${pkgdir}" "${pkgdir}"${site_packages}
+  # local site_packages=$(python -c "import site; print(site.getsitepackages()[0])")
+  # python -m compileall -o 0 -o 1 -o 2 --hardlink-dupes -s "${pkgdir}" "${pkgdir}"${site_packages}
 
   # Remove third party CMake patching for older versions than ours
   rm -rv "${pkgdir}"/usr/lib/cmake/vtk/patches/3.{1{3,6,9},20}
   # … as well as duplicate copies
-  rm -rv "${pkgdir}"/usr/lib/cmake/vtk/vtkm/{Find*.cmake,cmake/{Find*.cmake,3.15}}
+  # rm -rv "${pkgdir}"/usr/lib/cmake/vtk/vtkm/{Find*.cmake,cmake/{Find*.cmake,3.15}}
 }
 
