@@ -1,0 +1,41 @@
+# Maintainer: Bernd Müller <github@muellerbernd.de>
+# Contributor: Bernd Müller <github@muellerbernd.de>
+
+pkgname=nixd
+pkgver=git
+pkgrel=1
+pkgdesc="Nix language server"
+arch=('x86_64')
+url='https://github.com/nix-community/nixd'
+license=('GPL3')
+makedepends=('gtest' 'bison' 'boost' 'flex' 'meson' 'ninja' 'libbacktrace' 'flex' 'llvm' 'nix' 'nixfmt')
+# source=("https://github.com/nix-community/nixd/archive/refs/tags/${pkgver}.tar.gz")
+# sha256sums=('9e5ef7a0169feb2643d78284926eb864658dec14f2afd3e79cfdaf898bd26849')
+_dir="$pkgname/"
+source=("$pkgname::git+https://github.com/nix-community/nixd#commit=f88accc8a8231efdae900ff6a14cb6301a73cff9")
+sha256sums=('SKIP')
+
+# prepare() {
+#   meson subprojects download --sourcedir=$pkgname
+# }
+
+build() {
+  export CXXFLAGS=${CXXFLAGS/-Wunused-variable}
+  export CFLAGS=${CXXFLAGS/-Wunused-variable}
+  local meson_options=(
+    --buildtype=release
+  )
+
+  # arch-meson $pkgname-$pkgver build --buildtype=release
+  # arch-meson $pkgname build --buildtype=release
+  arch-meson $pkgname build "${meson_options[@]}"
+  meson compile -C build
+}
+
+check() {
+  meson test -C build --print-errorlogs
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+}
