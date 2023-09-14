@@ -2,10 +2,10 @@ pkgdesc="Library and utilities for working with ifm pmd-based 3D ToF Perception 
 url='https://github.com/ifm/ifm3d'
 
 pkgname='ifm3d'
-_pkgver='1.2.6'
+_pkgver='1.3.3'
 pkgver=v${_pkgver}
 arch=('any')
-pkgrel=2
+pkgrel=1
 license=('Apache License 2.0')
 makedepends=('cmake' 'curl' 'google-glog' 'gtest' 'pybind11' 'libxmlrpc')
 depends=()
