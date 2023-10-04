@@ -17,8 +17,9 @@ optdepends=('pagmo: pagmo optimizer support')
 makedepends=('cmake')
 provides=('dartsim')
 _pkgname=dart
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/dartsim/${_pkgname}/archive/v${pkgver}.tar.gz")
-sha256sums=('4da3ff8cee056252a558b05625a5ff29b21e71f2995e6d7f789abbf6261895f7')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/dartsim/${_pkgname}/archive/v${pkgver}.tar.gz" "gnu13.patch")
+sha256sums=('4da3ff8cee056252a558b05625a5ff29b21e71f2995e6d7f789abbf6261895f7'
+            '55ae432e1bca46988742aeefa1ae56cb277766791ffce26112b6ad8f0f3b7297')
 
 # Make libdart use pagmo 2.18.0 instead of 2.17.0
 prepare(){
