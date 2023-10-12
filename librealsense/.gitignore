@@ -1,1 +1,7 @@
-librealsense/
+*
+!.gitignore
+!.SRCINFO
+!PKGBUILD
+!*.install
+!*.patch
+!*.diff

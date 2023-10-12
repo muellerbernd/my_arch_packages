@@ -1,0 +1,68 @@
+diff --color -Naur librealsense-2.53.1/src/compression/CMakeLists.txt librealsense-2.53.1_patched/src/compression/CMakeLists.txt
+--- librealsense-2.53.1/src/compression/CMakeLists.txt	2022-12-05 09:05:03.000000000 +0100
++++ librealsense-2.53.1_patched/src/compression/CMakeLists.txt	2023-10-11 13:05:46.244919067 +0200
+@@ -29,12 +29,10 @@
+ #target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
+ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+ 
+-add_dependencies(${PROJECT_NAME}
+-    libjpeg-turbo
+-)
++include(FindJPEG)
+ 
+ include_directories(
+-    ${CMAKE_BINARY_DIR}/libjpeg-turbo/include
++    ${JPEG_INCLUDE_DIRS}
+     ${LZ4_DIR}
+ )
+ 
+@@ -43,12 +41,12 @@
+ if(WIN32)
+     target_link_libraries(${PROJECT_NAME}
+         PRIVATE ${DEPENDENCIES}
+-        PRIVATE ${CMAKE_BINARY_DIR}/libjpeg-turbo/lib/turbojpeg-static.lib
++        ${JPEG_LIBRARIES}
+     )
+ else()
+     target_link_libraries(${PROJECT_NAME}
+         PRIVATE ${DEPENDENCIES}
+-        PRIVATE ${CMAKE_BINARY_DIR}/libjpeg-turbo/lib/libturbojpeg.a
++        ${JPEG_LIBRARIES}
+     )
+ endif()
+ 
+diff --color -Naur librealsense-2.53.1/third-party/CMakeLists.txt librealsense-2.53.1_patched/third-party/CMakeLists.txt
+--- librealsense-2.53.1/third-party/CMakeLists.txt	2022-12-05 09:05:03.000000000 +0100
++++ librealsense-2.53.1_patched/third-party/CMakeLists.txt	2023-10-11 13:20:06.351364044 +0200
+@@ -15,18 +15,18 @@
+ 
+     add_subdirectory(${_rel_path}/live555)
+ 
+-    include(ExternalProject)
++    #include(ExternalProject)
+ 
+-    ### libjpeg-turbo ###################################################
+-    ExternalProject_Add (libjpeg-turbo
+-        PREFIX libjpeg-turbo
+-        GIT_REPOSITORY "https://github.com/libjpeg-turbo/libjpeg-turbo.git"
+-        GIT_TAG "main"
+-        SOURCE_DIR "${CMAKE_BINARY_DIR}/third-party/libjpeg-turbo"
+-        CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/libjpeg-turbo"
+-          "-DCMAKE_GENERATOR=${CMAKE_GENERATOR}"
+-          "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+-          "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}"
+-    )
++    #### libjpeg-turbo ###################################################
++    #ExternalProject_Add (libjpeg-turbo
++    #    PREFIX libjpeg-turbo
++    #    GIT_REPOSITORY "https://github.com/libjpeg-turbo/libjpeg-turbo.git"
++    #    GIT_TAG "main"
++    #    SOURCE_DIR "${CMAKE_BINARY_DIR}/third-party/libjpeg-turbo"
++    #    CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/libjpeg-turbo"
++    #      "-DCMAKE_GENERATOR=${CMAKE_GENERATOR}"
++    #      "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
++    #      "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}"
++    #)
+ 
+ endif()
+
